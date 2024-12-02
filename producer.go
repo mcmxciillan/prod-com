@@ -10,7 +10,12 @@ import (
 func producer() {
 	for {
 		// Generate a random number
-		randomNumber := rand.Intn(100) // Generates a random number between 0 and 99
+		randomNumber, err := getRandomNumber() // Generates a random number between 0 and 99
+
+		if err != nil {
+			fmt.Println("Error generating random number:", err)
+			return
+		}
 
 		// Lock the mutex before accessing the file
 		Mu.Lock()
