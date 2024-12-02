@@ -10,18 +10,13 @@ import (
 func producer() {
 	for {
 		// Generate a random number
-		randomNumber, err := getRandomNumber() // Generates a random number between 0 and 99
-
-		if err != nil {
-			fmt.Println("Error generating random number:", err)
-			return
-		}
+		randomNumber := rand.Intn(100) // Generates a random number between 0 and 99
 
 		// Lock the mutex before accessing the file
 		Mu.Lock()
 
 		// Open or create the file
-		file, err := os.OpenFile("resource.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		file, err := os.OpenFile("./resource.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 		// Wait for a random small amount of time to simulate work
 		waitTime := time.Duration(rand.Intn(5)+1) * time.Second

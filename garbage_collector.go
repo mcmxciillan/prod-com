@@ -14,7 +14,7 @@ func garbageCollector() {
 		Mu.Lock()
 
 		// Open the file
-		file, err := os.OpenFile("resource.txt", os.O_RDWR, 0644)
+		file, err := os.OpenFile("./resource.txt", os.O_RDWR, 0644)
 		if err != nil {
 			fmt.Println("Error opening the file:", err)
 			Mu.Unlock()
